@@ -23,6 +23,7 @@ const (
 	blackIndex = 1
 )
 
+// main
 func main() {
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/count", counter)
@@ -30,6 +31,7 @@ func main() {
 	log.Fatal(http.ListenAndServe("localhost:19700", nil))
 }
 
+// basic handler whitch returns the detail of url request
 func handler(w http.ResponseWriter, r *http.Request) {
 	mu.Lock()
 	count++
@@ -48,12 +50,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// count total visit times of server
 func counter(w http.ResponseWriter, r *http.Request) {
 	mu.Lock()
 	fmt.Fprintf(w, "Count %d\n", count)
 	mu.Unlock()
 }
 
+// Basic Runner of Lissajour generator.
 func lissajousRunner(w http.ResponseWriter, r *http.Request) {
 	mu.Lock()
 	count++
@@ -64,6 +68,7 @@ func lissajousRunner(w http.ResponseWriter, r *http.Request) {
 	lissajous(r.Form["cycles"][0], w)
 }
 
+// Lissajour func with adjustable cycle number.
 func lissajous(num string, out io.Writer) {
 	const (
 		res     = 0.001
