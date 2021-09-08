@@ -58,7 +58,7 @@ func mb(z complex128) color.Color {
 	for n := uint8(0); n < iterations; n++ {
 		v = v*v + z
 		if cmplx.Abs(v) > 2 {
-			return color.RGBA{(n * n / 6) % 255, (2*n + 40) % 255, (contrast * n) % 255, 255}
+			return color.RGBA{(n * n / 4) % 255, (2*n + 40) % 255, (contrast * n) % 255, 255}
 		}
 	}
 	return color.Black
