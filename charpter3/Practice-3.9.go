@@ -77,7 +77,3 @@ func mb64(z complex128) color.Color {
 	}
 	return color.Black
 }
-
-func mandelbrotBigFloat() {}
-
-func mandelbrotBigRat() {}
