@@ -36,3 +36,43 @@ func TestComma(t *testing.T) {
 	c2 := comma("243")
 	log.Printf("basename1: result is '%v'\n", c2)
 }
+
+func TestComma2(t *testing.T) {
+	log.Println("Start Testing func comma2")
+	c1 := comma2("21321867489326")
+	log.Printf("basename1: result is '%v'\n", c1)
+	c2 := comma2("243")
+	log.Printf("basename1: result is '%v'\n", c2)
+}
+
+func TestIntToString(t *testing.T) {
+	log.Println("Start Testing func printints")
+	c1 := intsToString([]int{1, 2, 3, 4, 5})
+	log.Printf("basename1: result is '%v'\n", c1)
+	c2 := intsToString([]int{134, 21, 6})
+	log.Printf("basename1: result is '%v'\n", c2)
+}
+
+func TestComma3(t *testing.T) {
+	log.Println("Start Testing func comma3")
+	c1 := comma3("-21321867489326")
+	log.Printf("basename1: result is '%v'\n", c1)
+	c2 := comma3("243.3348")
+	log.Printf("basename1: result is '%v'\n", c2)
+	c3 := comma3("15")
+	log.Printf("basename1: result is '%v'\n", c3)
+	c4 := comma3("+90789348.22")
+	log.Printf("basename1: result is '%v'\n", c4)
+	c5 := comma3("0")
+	log.Printf("basename1: result is '%v'\n", c5)
+}
+
+func TestIsDiff(t *testing.T) {
+	log.Println("Start Testing func IsDiff")
+	c1 := isDiff("acdf", "fdac")
+	log.Printf("basename1: result is '%v'\n", c1)
+	c2 := isDiff("", "")
+	log.Printf("basename1: result is '%v'\n", c2)
+	c3 := isDiff("", "21321")
+	log.Printf("basename1: result is '%v'\n", c3)
+}
