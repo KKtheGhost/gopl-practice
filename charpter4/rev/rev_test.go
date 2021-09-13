@@ -41,10 +41,10 @@ func TestRev2(m *testing.T) {
 
 func TestSliceEqual(m *testing.T) {
 	fmt.Println("Start testing func sliceEqual.")
-	origin := []string{"a","a","a","a","A","a"}
-	a, b, c, d, e := origin[:3],origin[1:4],origin[2:5],origin[:4],origin[1:1]
-	fmt.Printf("is %v and %v equal? Result is %v\n",a,b,sliceEqual(a,b))
-	fmt.Printf("is %v and %v equal? Result is %v\n",a,c,sliceEqual(a,c))
-	fmt.Printf("is %v and %v equal? Result is %v\n",a,d,sliceEqual(a,d))
-	fmt.Printf("is %v and %v equal? Result is %v\n",a,e,sliceEqual(a,e))
+	origin := []string{"a", "a", "a", "a", "A", "a"}
+	a, b, c, d, e := origin[:3], origin[1:4], origin[2:5], origin[:4], origin[1:1]
+	fmt.Printf("is %v and %v equal? Result is %v\n", a, b, sliceEqual(a, b))
+	fmt.Printf("is %v and %v equal? Result is %v\n", a, c, sliceEqual(a, c))
+	fmt.Printf("is %v and %v equal? Result is %v\n", a, d, sliceEqual(a, d))
+	fmt.Printf("is %v and %v equal? Result is %v\n", a, e, sliceEqual(a, e))
 }
