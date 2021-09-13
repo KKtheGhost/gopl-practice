@@ -39,6 +39,14 @@ func TestRev2(m *testing.T) {
 	fmt.Printf("After rev,the slice is %v.\n", a)
 }
 
+func TestRev3(m *testing.T) {
+	fmt.Println("Start testing reverse with pointer.")
+	a := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	fmt.Printf("Origin slice is %v.\n", a)
+	rev2(&a)
+	fmt.Printf("After rev,the slice is %v.\n", a)
+}
+
 func TestSliceEqual(m *testing.T) {
 	fmt.Println("Start testing func sliceEqual.")
 	origin := []string{"a", "a", "a", "a", "A", "a"}
