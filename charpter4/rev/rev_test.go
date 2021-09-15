@@ -56,3 +56,23 @@ func TestSliceEqual(m *testing.T) {
 	fmt.Printf("is %v and %v equal? Result is %v\n", a, d, sliceEqual(a, d))
 	fmt.Printf("is %v and %v equal? Result is %v\n", a, e, sliceEqual(a, e))
 }
+
+func TestCleanDuplicate(m *testing.T) {
+	fmt.Println("Start testing func cleanDuplicate.")
+	origin1 := []string{"a", "a", "b", "b", "A", "c"}
+	origin2 := []string{""}
+	fmt.Printf("Clear the duplicate strings in %v: Result is %v\n", origin1, cleanDuplicate(origin1))
+	fmt.Printf("Clear the duplicate strings in %v: Result is %v\n", origin2, cleanDuplicate(origin2))
+}
+
+func TestExtrudeSpace(m *testing.T) {
+	fmt.Println("Start testing func cleanDuplicate.")
+	b := []byte{33,22,44,00,00,56,71}
+	fmt.Printf("Origin byte is %v: Result is %v\n", b, extrudeSpace(b))
+}
+
+func TestReverseNoSpace(m *testing.T) {
+	fmt.Println("Start testing func cleanDuplicate.")
+	b := []byte{33,22,44,00,00,56,71}
+	fmt.Printf("Origin byte is %v: Result is %v\n", b, reverseSaveSpace(b))
+}

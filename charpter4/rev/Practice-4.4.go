@@ -5,8 +5,8 @@ package rev
 // tmp := make([]int, 5)
 // tmp = []int{1,2,3,4,5}
 // a = []int{6,7}
-// a
-
+// a[2:]=[]int{1,2,3,4,5}
+// a = []int{6,7,1,2,3,4,5}
 
 func rotate(a []int, x int) {
 	length := len(a)

@@ -34,7 +34,7 @@ func nonempty2(strings []string) []string {
 }
 
 func main() {
-	strings := []string{"q","e","","w","d"}
+	strings := []string{"q", "e", "", "w", "d"}
 	fmt.Println(nonempty(strings))
 	fmt.Println(nonempty2(strings))
 }
