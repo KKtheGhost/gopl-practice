@@ -67,12 +67,12 @@ func TestCleanDuplicate(m *testing.T) {
 
 func TestExtrudeSpace(m *testing.T) {
 	fmt.Println("Start testing func cleanDuplicate.")
-	b := []byte{33,22,44,00,00,56,71}
+	b := []byte("Mo  k")
 	fmt.Printf("Origin byte is %v: Result is %v\n", b, extrudeSpace(b))
 }
 
 func TestReverseNoSpace(m *testing.T) {
 	fmt.Println("Start testing func cleanDuplicate.")
-	b := []byte{33,22,44,00,00,56,71}
+	b := []byte("Mother  Fucker wet  Ass Pussy!")
 	fmt.Printf("Origin byte is %v: Result is %v\n", b, reverseSaveSpace(b))
 }
