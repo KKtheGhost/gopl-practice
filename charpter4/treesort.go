@@ -10,25 +10,25 @@ type binaryTree struct {
 }
 
 func main() {
-	a := []int{14,42,622,254,443,55}
+	a := []int{14, 42, 622, 254, 443, 55}
 	sortInteger(a)
 	fmt.Println(a)
 }
 
 func sortInteger(intValues []int) {
 	var binaryTreeRoot *binaryTree
-	for _,v := range intValues {
-		binaryTreeRoot = addInteger(binaryTreeRoot,v)
+	for _, v := range intValues {
+		binaryTreeRoot = addInteger(binaryTreeRoot, v)
 	}
-	appendInteger(intValues[:0],binaryTreeRoot)
+	appendInteger(intValues[:0], binaryTreeRoot)
 }
 
 // Recursion append function
 func appendInteger(intValues []int, pTree *binaryTree) []int {
 	if pTree != nil {
-		intValues = appendInteger(intValues,pTree.leftPos)
+		intValues = appendInteger(intValues, pTree.leftPos)
 		intValues = append(intValues, pTree.intValue)
-		intValues = appendInteger(intValues,pTree.rightPos)
+		intValues = appendInteger(intValues, pTree.rightPos)
 	}
 	return intValues
 }
