@@ -14,7 +14,7 @@ const templ = `{{.TotalCount}} issues:
 {{range .Items}}----------------------------------------
 Number: {{.Number}}
 User:   {{.User.Login}}
-Title:  {{.Title | printf "%.64s"}}
+Title:  {{.Title | printf "%.128s"}}
 Age:    {{.CreatedAt | daysAgo}} days
 {{end}}`
 
