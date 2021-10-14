@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-const IssueURL = "https://api.github.com/search/issues"
+const IssuesURL = "https://api.github.com/search/issues"
 const APIURL = "https://api.github.com"
 
 type User struct {
@@ -23,7 +23,7 @@ type Issue struct {
 	Body      string
 }
 
-type IssueSearchResult struct {
+type IssuesSearchResult struct {
 	TotalCount int
 	Items      []*Issue
 }

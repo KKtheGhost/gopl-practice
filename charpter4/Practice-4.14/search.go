@@ -5,11 +5,28 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
-func SearchIssues(terms []string) (*IssueSearchResult, error) {
+func SearchIssues(terms []string) (*IssuesSearchResult, error) {
+	q := url.QueryEscape(strings.Join(terms, " "))
+	resp, err := http.Get(IssuesURL + "?q=" + q)
+	if err != nil {
+		return nil, err
+	}
+	if resp.StatusCode != http.StatusOK {
+		resp.Body.Close()
+		return nil, fmt.Errorf("Search query failed: %s", resp.Status)
+	}
 
+	var result IssuesSearchResult
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+		resp.Body.Close()
+		return nil, err
+	}
+	resp.Body.Close()
+	return &result, nil
 }
 
 // basic functions
@@ -21,13 +38,13 @@ func get(url string) (*http.Response, error) {
 	}
 	if resp.StatusCode != http.StatusOK {
 		resp.Body.Close()
-		return nil, fmt.Errorf("Cannot get %s: %s",url,resp.Status)
+		return nil, fmt.Errorf("Cannot get %s: %s", url, resp.Status)
 	}
 	return resp, nil
 }
 
 func GetIssue(owner, repo, number string) (*Issue, error) {
-	url := strings.Join([]string{APIURL, "repos", owner, repo, "issues",number}, "/")
+	url := strings.Join([]string{APIURL, "repos", owner, repo, "issues", number}, "/")
 	resp, err := get(url)
 	if err != nil {
 		return nil, err
@@ -35,7 +52,7 @@ func GetIssue(owner, repo, number string) (*Issue, error) {
 	defer resp.Body.Close()
 
 	var issue Issue
-	if err := json.NewDecoder(resp.Body).Decode(&issue); err != nil{
+	if err := json.NewDecoder(resp.Body).Decode(&issue); err != nil {
 		return nil, err
 	}
 	return &issue, nil
@@ -50,7 +67,7 @@ func GetIssues(owner, repo string) ([]Issue, error) {
 	defer resp.Body.Close()
 
 	var issues []Issue
-	if err := json.NewDecoder(resp.Body).Decode(&issues); err != nil{
+	if err := json.NewDecoder(resp.Body).Decode(&issues); err != nil {
 		return nil, err
 	}
 	return issues, nil
@@ -66,11 +83,11 @@ func EditIssue(owner, repo, number string, fields map[string]string) (*Issue, er
 
 	client := &http.Client{}
 	url := strings.Join([]string{APIURL, "repos", owner, repo, "issues", number}, "/")
-	req,err := http.NewRequest("PATCH",url,buf)
+	req, err := http.NewRequest("PATCH", url, buf)
 	if err != nil {
 		return nil, err
 	}
-	resp,err := client.Do(req)
+	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
