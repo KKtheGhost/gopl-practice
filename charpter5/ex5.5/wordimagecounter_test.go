@@ -10,12 +10,12 @@ import (
 )
 
 func TestCounter(t *testing.T) {
-	source,_ := ioutil.ReadFile("./file_xindong_com.html")
+	source, _ := ioutil.ReadFile("./file_xindong_com.html")
 	data := bytes.NewBuffer(source)
-	doc,_ := html.Parse(data)
+	doc, _ := html.Parse(data)
 	wordsExpects := 42
 	imagesExpects := 0
-	words,images := Counter(doc)
+	words, images := Counter(doc)
 	if words != wordsExpects {
 		t.Errorf("Words count wrong. Expects: %d, got %d\n", wordsExpects, words)
 	}
