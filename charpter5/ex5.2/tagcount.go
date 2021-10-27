@@ -19,11 +19,11 @@ func main() {
 	}
 	var tags []string
 	for tag := range countTable {
-		tags = append(tags,tag)
+		tags = append(tags, tag)
 	}
 	sort.Strings(tags)
-	for _,tag := range tags {
-		fmt.Fprintf(os.Stdout, "%4d %s\n", countTable[tag],tag)
+	for _, tag := range tags {
+		fmt.Fprintf(os.Stdout, "%4d %s\n", countTable[tag], tag)
 	}
 }
 
@@ -36,13 +36,13 @@ func tagCount(r io.Reader) (map[string]int, error) {
 		if tag == html.ErrorToken {
 			break
 		}
-		name,ok := t.TagName()
+		name, ok := t.TagName()
 		if ok {
 			countTable[string(name)]++
 		}
 	}
 	if err != io.EOF {
-		return countTable,err
+		return countTable, err
 	}
-	return countTable,nil
+	return countTable, nil
 }
