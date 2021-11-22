@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"io"
+	"os"
 )
 
-// prereqs记录了每个课程的前置课程
+var stdout io.Writer = os.Stdout // modified during testing
 var prereqs = map[string][]string{
 	"algorithms": {"data structures"},
 	"calculus":   {"linear algebra"},
@@ -23,11 +24,6 @@ var prereqs = map[string][]string{
 	"programming languages": {"data structures", "computer organization"},
 }
 
-func main() {
-	for i, course := range topoSort(prereqs) {
-		fmt.Printf("%d:\t%s\n", i+1, course)
-	}
-}
 func topoSort(m map[string][]string) []string {
 	var order []string
 	seen := make(map[string]bool)
@@ -41,11 +37,14 @@ func topoSort(m map[string][]string) []string {
 			}
 		}
 	}
-	var keys []string
 	for key := range m {
-		keys = append(keys, key)
+		visitAll([]string{key})
 	}
-	sort.Strings(keys)
-	visitAll(keys)
 	return order
+}
+
+func main() {
+	for i, course := range topoSort(prereqs) {
+		fmt.Fprintf(stdout, "%d:\t%s\n", i+1, course)
+	}
 }

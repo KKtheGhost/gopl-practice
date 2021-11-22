@@ -1,9 +1,3 @@
-// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
-// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
-
-// See page 138.
-//!+Extract
-
 // Package links provides a link-extraction function.
 package main
 
@@ -52,3 +46,16 @@ func Extract(url string) ([]string, error) {
 }
 
 //!-Extract
+
+// Copied from gopl.io/ch5/outline2.
+func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
+	if pre != nil {
+		pre(n)
+	}
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		forEachNode(c, pre, post)
+	}
+	if post != nil {
+		post(n)
+	}
+}
