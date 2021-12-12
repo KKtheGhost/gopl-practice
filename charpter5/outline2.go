@@ -33,6 +33,8 @@ func outline2(url string) error {
 	}
 
 	//!+call
+
+	
 	forEachNode(doc, startElement, endElement)
 	//!-call
 
